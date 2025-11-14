@@ -19,12 +19,12 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className={cn("text-sm", textClass("muted"))}>
-            تمامی حقوق برای فاطمه فرج زاده محفوظ است
+            تمامی حقوق برای fateme farajzade ه محفوظ است
           </p>
           <p className={cn("text-sm", textClass("muted"))}>
             توسعه یافته توسط {" "}
             <span className={cn("font-semibold", textClass("text"))}>
-              فاطمه فرج زاده
+              fateme farajzade
             </span>
           </p>
         </div>
