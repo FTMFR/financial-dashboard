@@ -24,6 +24,12 @@ export function bgClass(variant: "card" | "bg" | "surface" = "card"): string {
   return classes[variant];
 }
 
+/**
+ * Helper function برای کلاس‌های border با theme
+ */
+export function borderClass(): string {
+  return "border-light-border dark:border-dark-border";
+}
 
 /**
  * Helper function برای کلاس‌های card کامل
@@ -31,7 +37,8 @@ export function bgClass(variant: "card" | "bg" | "surface" = "card"): string {
 export function cardClass(): string {
   return cn(
     bgClass("card"),
-    "rounded-xl",
+    "rounded-xl border",
+    borderClass(),
     "p-6 shadow-lg"
   );
 }

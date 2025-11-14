@@ -2,6 +2,10 @@
 
 A modern, premium financial analysis dashboard built with Next.js, React, TypeScript, and TailwindCSS.
 
+> **توسعه‌دهنده:** [نام شما]  
+> **نوع پروژه:** تمرینی (Practice Task)  
+> **تاریخ:** 2024
+
 ## Features
 
 - 🎨 Modern UI with Dark/Light mode support
@@ -73,6 +77,12 @@ src/
 - **Framer Motion** - Animation library
 - **Highcharts** - Chart library
 - **Lucide React** - Icon library
+
+## Developer
+
+**توسعه‌دهنده:** [نام شما]
+
+این پروژه به عنوان یک تسک تمرینی توسعه یافته است.
 
 ## License
 
