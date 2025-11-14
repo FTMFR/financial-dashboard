@@ -14,8 +14,6 @@ interface InfoRowProps {
 export default function InfoRow({
   label,
   value,
-  valueClassName,
-  numberVariant = "default",
 }: InfoRowProps) {
   return (
     <div className="flex justify-between items-center">

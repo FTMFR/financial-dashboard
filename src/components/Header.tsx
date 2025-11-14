@@ -3,7 +3,7 @@
 import { TrendingUp, Moon, Sun } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { motion } from "framer-motion";
-import { textClass, bgClass, borderClass, cardClass } from "@/lib/classNames";
+import { textClass, bgClass } from "@/lib/classNames";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
@@ -14,11 +14,7 @@ export default function Header() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={cn(
-        "w-full border-b",
-        borderClass(),
-        bgClass("surface")
-      )}
+      className={cn("w-full border-b border-[#525252]", bgClass("card"))}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
@@ -32,7 +28,12 @@ export default function Header() {
               <TrendingUp className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className={cn("text-xl sm:text-2xl font-bold", textClass("text"))}>
+              <h1
+                className={cn(
+                  "text-xl sm:text-2xl font-bold",
+                  textClass("text")
+                )}
+              >
                 تحلیل‌گر مالی
               </h1>
               <p className={cn("text-xs sm:text-sm", textClass("muted"))}>
@@ -47,8 +48,8 @@ export default function Header() {
             transition={{ duration: 0.5, delay: 0.2 }}
             onClick={toggleTheme}
             className={cn(
-              "p-2 rounded-lg transition-colors hover:bg-dark-surface dark:hover:bg-dark-surface hover:bg-light-surface dark:hover:bg-dark-surface",
-              cardClass()
+              "p-2 rounded-lg transition-colors border-[#525252] border hover:bg-dark-surface dark:hover:bg-dark-surface hover:bg-light-surface dark:hover:bg-dark-surface border",
+              bgClass("card")
             )}
             aria-label="تغییر تم"
           >

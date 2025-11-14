@@ -26,7 +26,7 @@ export default function FileCard({ file, index }: FileCardProps) {
           whileHover={{ scale: 1.02, y: -5 }}
           whileTap={{ scale: 0.98 }}
           className={cn(
-            "group relative overflow-hidden rounded-xl border p-6 shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/10 dark:hover:shadow-primary-500/20 cursor-pointer",
+            "group border-[#525252] border relative overflow-hidden rounded-xl p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/10 dark:hover:shadow-primary-500/20 cursor-pointer",
             cardClass()
           )}
         >

@@ -20,7 +20,7 @@ export default function InfoCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
-      className={cardClass()}
+      className={cn(cardClass(), "border border-[#525252]")}
     >
       <h3 className={cn("text-lg font-semibold mb-4", textClass("text"))}>
         {title}
@@ -29,4 +29,3 @@ export default function InfoCard({
     </motion.div>
   );
 }
-
