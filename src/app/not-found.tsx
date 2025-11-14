@@ -1,23 +1,25 @@
-import Link from 'next/link'
-import Layout from '@/components/Layout'
+import Link from "next/link";
+import Layout from "@/components/Layout";
+import { textClass } from "@/lib/classNames";
+import { cn } from "@/lib/utils";
 
 export default function NotFound() {
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
-        <h1 className="text-6xl font-bold text-dark-text dark:text-dark-text text-light-text dark:text-dark-text mb-4">
+        <h1 className={cn("text-6xl font-bold mb-4", textClass("text"))}>
           404
         </h1>
-        <p className="text-xl text-dark-muted dark:text-dark-muted text-light-muted dark:text-dark-muted mb-8">
-          Company not found
+        <p className={cn("text-xl mb-8", textClass("muted"))}>
+          شرکت یافت نشد
         </p>
         <Link
           href="/"
           className="px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors"
         >
-          Back to Dashboard
+          بازگشت به داشبورد
         </Link>
       </div>
     </Layout>
-  )
+  );
 }

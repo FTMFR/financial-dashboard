@@ -1,27 +1,29 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import { ThemeProvider } from '@/components/ThemeProvider'
+import type { Metadata } from "next";
+import { Vazirmatn } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
-const inter = Inter({ subsets: ['latin'] })
+const vazirmatn = Vazirmatn({
+  subsets: ["latin", "arabic"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-vazirmatn",
+});
 
 export const metadata: Metadata = {
-  title: 'Financial Dashboard - Professional Analysis',
-  description: 'Premium financial analysis and insights dashboard',
-}
+  title: "داشبورد مالی - تحلیل حرفه‌ای",
+  description: "پلتفرم تحلیل و بینش مالی پیشرفته",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
+      <body className={vazirmatn.className}>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

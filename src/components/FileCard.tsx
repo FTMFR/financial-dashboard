@@ -1,20 +1,17 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { ArrowRight, Calendar, TrendingUp, AlertCircle } from 'lucide-react'
-import { CompanyFile } from '@/data/filesData'
-import { formatDate, formatCurrency, formatPercentage } from '@/lib/utils'
-import Link from 'next/link'
+import { motion } from "framer-motion";
+import { ArrowLeft, Calendar, TrendingUp, AlertCircle } from "lucide-react";
+import { CompanyFile } from "@/data/filesData";
+import { formatDate, formatCurrency, formatPercentage } from "@/lib/utils";
+import Link from "next/link";
+import { cardClass, textClass } from "@/lib/classNames";
+import { cn } from "@/lib/utils";
+import RiskBadge from "@/components/ui/RiskBadge";
 
 interface FileCardProps {
-  file: CompanyFile
-  index: number
-}
-
-const riskColors = {
-  Low: 'text-green-500 bg-green-500/10 border-green-500/20',
-  Medium: 'text-yellow-500 bg-yellow-500/10 border-yellow-500/20',
-  High: 'text-red-500 bg-red-500/10 border-red-500/20',
+  file: CompanyFile;
+  index: number;
 }
 
 export default function FileCard({ file, index }: FileCardProps) {
@@ -28,7 +25,10 @@ export default function FileCard({ file, index }: FileCardProps) {
         <motion.div
           whileHover={{ scale: 1.02, y: -5 }}
           whileTap={{ scale: 0.98 }}
-          className="group relative overflow-hidden rounded-xl bg-dark-card dark:bg-dark-card bg-light-card dark:bg-dark-card border border-dark-border dark:border-dark-border border-light-border dark:border-dark-border p-6 shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/10 dark:hover:shadow-primary-500/20 cursor-pointer"
+          className={cn(
+            "group relative overflow-hidden rounded-xl border p-6 shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/10 dark:hover:shadow-primary-500/20 cursor-pointer",
+            cardClass()
+          )}
         >
           {/* Gradient overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary-500/0 to-primary-500/0 group-hover:from-primary-500/5 group-hover:to-primary-500/10 transition-all duration-300" />
@@ -41,40 +41,55 @@ export default function FileCard({ file, index }: FileCardProps) {
                   {file.logo}
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-dark-text dark:text-dark-text text-light-text dark:text-dark-text mb-1">
+                  <h3
+                    className={cn(
+                      "text-lg font-semibold mb-1",
+                      textClass("text")
+                    )}
+                  >
                     {file.displayName}
                   </h3>
-                  <p className="text-sm text-dark-muted dark:text-dark-muted text-light-muted dark:text-dark-muted line-clamp-2">
+                  <p className={cn("text-sm line-clamp-2", textClass("muted"))}>
                     {file.description}
                   </p>
                 </div>
               </div>
               <motion.div
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 + 0.2 }}
                 className="opacity-0 group-hover:opacity-100 transition-opacity"
               >
-                <ArrowRight className="w-5 h-5 text-primary-500" />
+                <ArrowLeft className="w-5 h-5 text-primary-500" />
               </motion.div>
             </div>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-4 mt-6">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-xs text-dark-muted dark:text-dark-muted text-light-muted dark:text-dark-muted">
+                <div
+                  className={cn(
+                    "flex items-center gap-2 text-xs",
+                    textClass("muted")
+                  )}
+                >
                   <Calendar className="w-3 h-3" />
-                  <span>Last Analysis</span>
+                  <span>آخرین تحلیل</span>
                 </div>
-                <p className="text-sm font-medium text-dark-text dark:text-dark-text text-light-text dark:text-dark-text">
+                <p className={cn("text-sm font-medium", textClass("text"))}>
                   {formatDate(file.lastAnalysisDate)}
                 </p>
               </div>
 
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-xs text-dark-muted dark:text-dark-muted text-light-muted dark:text-dark-muted">
+                <div
+                  className={cn(
+                    "flex items-center gap-2 text-xs",
+                    textClass("muted")
+                  )}
+                >
                   <TrendingUp className="w-3 h-3" />
-                  <span>Annual Return</span>
+                  <span>بازدهی سالانه</span>
                 </div>
                 <p className="text-sm font-semibold text-primary-500">
                   {formatPercentage(file.annualReturn)}
@@ -82,22 +97,28 @@ export default function FileCard({ file, index }: FileCardProps) {
               </div>
 
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-xs text-dark-muted dark:text-dark-muted text-light-muted dark:text-dark-muted">
-                  <AlertCircle className="w-3 h-3" />
-                  <span>Risk Level</span>
-                </div>
-                <span
-                  className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${riskColors[file.riskLevel]}`}
+                <div
+                  className={cn(
+                    "flex items-center gap-2 text-xs",
+                    textClass("muted")
+                  )}
                 >
-                  {file.riskLevel}
-                </span>
+                  <AlertCircle className="w-3 h-3" />
+                  <span>سطح ریسک</span>
+                </div>
+                <RiskBadge riskLevel={file.riskLevel} />
               </div>
 
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-xs text-dark-muted dark:text-dark-muted text-light-muted dark:text-dark-muted">
-                  <span>Market Cap</span>
+                <div
+                  className={cn(
+                    "flex items-center gap-2 text-xs",
+                    textClass("muted")
+                  )}
+                >
+                  <span>ارزش بازار</span>
                 </div>
-                <p className="text-sm font-medium text-dark-text dark:text-dark-text text-light-text dark:text-dark-text">
+                <p className={cn("text-sm font-medium", textClass("text"))}>
                   {formatCurrency(file.marketCap)}
                 </p>
               </div>
@@ -109,5 +130,5 @@ export default function FileCard({ file, index }: FileCardProps) {
         </motion.div>
       </Link>
     </motion.div>
-  )
+  );
 }
